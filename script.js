@@ -1,5 +1,9 @@
 let currentMood = 'medium';
-let tasks = [];
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
 
 function setMood(mood) {
   currentMood = mood;
@@ -22,22 +26,26 @@ function addTask() {
   });
 
   document.getElementById('taskText').value = '';
+  saveTasks();
   renderTasks();
 }
 
 function toggleDone(index) {
   tasks[index].done = !tasks[index].done;
+  saveTasks();
   renderTasks();
 }
 
 function deleteTask(index) {
   tasks.splice(index, 1);
+  saveTasks();
   renderTasks();
 }
 
 function clearAllTasks() {
   if (confirm('Are you sure you want to delete all tasks?')) {
     tasks = [];
+    saveTasks();
     renderTasks();
   }
 }
@@ -78,3 +86,5 @@ function renderTasks() {
     list.appendChild(li);
   });
 }
+
+renderTasks();

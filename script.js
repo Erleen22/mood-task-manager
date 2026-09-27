@@ -7,7 +7,10 @@ function saveTasks() {
 
 function setMood(mood) {
   currentMood = mood;
+  document.querySelectorAll('.mood-section button').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
   renderTasks();
+}
 }
 
 function addTask() {

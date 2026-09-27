@@ -35,6 +35,13 @@ function deleteTask(index) {
   renderTasks();
 }
 
+function clearAllTasks() {
+  if (confirm('Are you sure you want to delete all tasks?')) {
+    tasks = [];
+    renderTasks();
+  }
+}
+
 function sortByMood(taskList) {
   const order = {
     low: { easy: 0, medium: 1, hard: 2 },
@@ -50,6 +57,9 @@ function sortByMood(taskList) {
 function renderTasks() {
   const list = document.getElementById('taskList');
   list.innerHTML = '';
+
+  document.getElementById('taskCounter').innerText =
+    `${tasks.filter(t => !t.done).length} tasks remaining`;
 
   const sorted = sortByMood(tasks);
 

@@ -11,7 +11,6 @@ function setMood(mood) {
   event.target.classList.add('active');
   renderTasks();
 }
-}
 
 function addTask() {
   const text = document.getElementById('taskText').value.trim();
@@ -89,7 +88,5 @@ function renderTasks() {
     list.appendChild(li);
   });
 }
-
-renderTasks();
 
 renderTasks();
